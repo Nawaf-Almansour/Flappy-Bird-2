@@ -11,3 +11,17 @@ body {
     background-color: #141b23;
 
 }
+
+#startBtn {
+    display: none;
+    border: none;
+    background: none;
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    z-index: 1;
+    transform: translate(-50%,-50%);
+    -webkit-transform: translate(-50%,-50%);
+    -moz-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+}

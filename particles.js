@@ -3,10 +3,10 @@ const particlesArray = [];
 class Particle {
     constructor() {
         this.x = bird.x;
-        this.y = bird.y;
+        this.y = bird.y + 20;
         this.size = Math.random() * 7 + 3;
-        this.speedY = (Math.random()) - 0.5;
-        this.color = `hsla(${hue}, 100%, 50%, 0.8)`;
+        this.speedY = (Math.random()) - 1;
+        this.color = `hsla(${hue}, 100%, 50%, 0.5)`;
     }
 
     update() {
@@ -17,7 +17,7 @@ class Particle {
     draw() {
         context.fillStyle = this.color;
         context.beginPath();
-        context.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        context.arc(this.x , this.y, this.size, 0, Math.PI * 3);
         context.fill();
     }
 }

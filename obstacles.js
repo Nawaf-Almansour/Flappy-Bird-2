@@ -2,18 +2,18 @@ const obstaclesArray = []
 
 class Obstacles {
     constructor() {
-        this.top = (Math.random() * canvas.height/3) +20;
-        this.bottom = (Math.random() * canvas.height/3 ) +20;
+        this.top = Math.random() * (canvas.height / 2.1 - canvas.height / 4) + canvas.height / 4;
+        this.bottom = Math.random() * (canvas.height / 2 - canvas.height / 4) + canvas.height / 4;
         this.x = canvas.width;
-        this.width = 20;
-        // this.color = 'blue';
+        this.width = 38;
         this.color = `hsla(${hue}, 90%, 40%, 1)`;
         this.conuted = false;
 
     }
+
     update() {
         this.x -= gameSpeed;
-        if (!this.conuted && this.x < bird.x){
+        if (!this.conuted && this.x < bird.x) {
             score++;
             this.conuted = true;
         }
@@ -28,14 +28,14 @@ class Obstacles {
 }
 
 function handleObstacles() {
-    if (frame%150 === 0){
+    if (frame % 150 === 0) {
         obstaclesArray.unshift(new Obstacles);
     }
-    for (i = 0; i < obstaclesArray.length; i++){
+    for (i = 0; i < obstaclesArray.length; i++) {
         obstaclesArray[i].update();
 
     }
-    if (obstaclesArray.length > 20){
+    if (obstaclesArray.length > 20) {
         obstaclesArray.pop(obstaclesArray[0])
     }
 }
