@@ -10,6 +10,7 @@ let angle = 0;
 let hue = 0;
 let frame = 0;
 let score = 0;
+let bestScore = localStorage.getItem('bestScore');
 let gameSpeed = 2;
 
 const gradient = context.createLinearGradient(0, 0, 0, 70);
@@ -30,7 +31,9 @@ function animate() {
     context.fillStyle = gradient;
     context.strokeText('score: ' + score, 18, 38);
     context.fillText('score: ' + score, 20, 40);
-
+    bestScore = bestScore < score ? score : bestScore;
+    window.localStorage.setItem('bestScore', bestScore)
+    context.fillText(`Best score: ${bestScore}`, 20, 80);
     handleCollisions();
     if (handleCollisions()) return;
     requestAnimationFrame(animate);
@@ -46,7 +49,7 @@ window.addEventListener('keydown', function (e) {
 window.addEventListener('keyup', function (e) {
     if (e.code === 'Space') spacePressed = false;
 });
-canvas.addEventListener("click", function() {
+canvas.addEventListener("click", function () {
     bird.onClickFlap();
     console.log('hey')
 });
@@ -65,7 +68,7 @@ function handleCollisions() {
             context.font = '25px Georgia';
             context.fillStyle = '#eee';
             context.fillText('Game Over your score is ' + score, canvas.width / 2 - 150, canvas.height / 2 - 10)
-         document.getElementById('startBtn').style.display = "block";
+            document.getElementById('startBtn').style.display = "block";
 
             return true;
         }
