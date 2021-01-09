@@ -60,7 +60,7 @@ function  handleCollisions(){
           context.drawImage(bang, bird.x - 10, bird.y - 10, 60, 60);
           context.font = '25px Georgia';
           context.fillStyle = '#eee';
-          context.fillText('Game Over your score is '+ score, 160, canvas.height/2 -10)
+          context.fillText('Game Over your score is '+ score, canvas.width/2 - 150, canvas.height/2 -10)
           return true;
       }
     }
