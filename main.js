@@ -1,7 +1,9 @@
 const canvas = document.getElementById('canvas1')
-const ctx = canvas.getContext('2d');
-canvas.width = 600;
-canvas.height = 400;
+const context = canvas.getContext('2d');
+// canvas.width = 600;
+// canvas.height = 400;
+canvas.width = canvasSizeWidth = pipeX = window.innerWidth - 90;
+canvas.height = canvasSizeHeight = window.innerHeight - 90;
 
 let spacePressed = false;
 let angle = 0;
@@ -10,23 +12,23 @@ let frame = 0;
 let score = 0;
 let gameSpeed = 2;
 
-const gradient = ctx.createLinearGradient(0,0,0,70);
+const gradient = context.createLinearGradient(0,0,0,70);
 gradient.addColorStop('0.4','#fff');
-gradient.addColorStop('0.5', '#a9a9a9');
+gradient.addColorStop('0.5', '#363636');
 gradient.addColorStop('0.4','#e1e1e1');
 gradient.addColorStop('0.5', '#727272');
 
 
 function animate() {
-    ctx.clearRect(0,0,canvas.width, canvas.height);
+    context.clearRect(0,0,canvas.width, canvas.height);
     handleObstacles();
     handleParticles();
     bird.update();
     bird.draw();
-    ctx.font = '25px Georgia';
-    ctx.fillStyle = gradient;
-    ctx.strokeText('score: '+ score, 10, 10);
-    ctx.fillText(score,10, 20);
+    context.font = '25px Georgia';
+    context.fillStyle = gradient;
+    context.strokeText('score: '+ score, 18, 38);
+    context.fillText('score: '+ score,20, 40);
 
     handleCollisions();
 if (handleCollisions()) return;
@@ -45,7 +47,7 @@ window.addEventListener('keyup', function (e){
 });
 
 const bang = new Image();
-bang.src = 'bang.png';
+bang.src = 'bird-2.png';
 
 function  handleCollisions(){
   for ( let i = 0; i < obstaclesArray.length; i++){
@@ -55,10 +57,10 @@ function  handleCollisions(){
           (( bird.y < 0 + obstaclesArray[i].top && bird.y + bird.height > 0) ||
           (bird.y > canvas.height - obstaclesArray[i].bottom &&
           bird.y + bird.height < canvas.height ))) {
-          ctx.drawImage(bang, bird.x, bird.y, 50, 50);
-          ctx.font = '25px Georgia';
-          ctx.fillStyle = 'black';
-          ctx.fillText('Game Over your score is '+ score, 160, canvas.height/2 -10)
+          context.drawImage(bang, bird.x - 10, bird.y - 10, 60, 60);
+          context.font = '25px Georgia';
+          context.fillStyle = '#eee';
+          context.fillText('Game Over your score is '+ score, 160, canvas.height/2 -10)
           return true;
       }
     }

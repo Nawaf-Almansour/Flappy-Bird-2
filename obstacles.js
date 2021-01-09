@@ -8,17 +8,22 @@ class Obstacles {
         this.width = 20;
         // this.color = 'blue';
         this.color = `hsla(${hue}, 90%, 40%, 1)`;
+        this.conuted = false;
 
     }
     update() {
         this.x -= gameSpeed;
+        if (!this.conuted && this.x < bird.x){
+            score++;
+            this.conuted = true;
+        }
         this.draw();
     }
 
     draw() {
-        ctx.fillStyle = this.color;
-        ctx.fillRect(this.x, 0, this.width, this.top);
-        ctx.fillRect(this.x, canvas.height - this.bottom, this.width, this.bottom);
+        context.fillStyle = this.color;
+        context.fillRect(this.x, 0, this.width, this.top);
+        context.fillRect(this.x, canvas.height - this.bottom, this.width, this.bottom);
     }
 }
 
