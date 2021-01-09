@@ -15,8 +15,10 @@ function animate() {
     // ctx.fillRect(10,10,50,50)
     bird.update();
     bird.draw();
+    handleParticles()
     requestAnimationFrame(animate);
     angle+=0.12;
+    hue++;
 }
 animate();
 
