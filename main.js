@@ -16,11 +16,11 @@ function animate() {
     bird.update();
     bird.draw();
     requestAnimationFrame(animate);
+    angle+=0.12;
 }
 animate();
 
 window.addEventListener('keydown', function (e){
-    console.log(e.code)
     if (e.code === 'Space') spacePressed =true;
 });
 window.addEventListener('keyup', function (e){
